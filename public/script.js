@@ -1,11 +1,9 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
-
 const app = new Vue({
     el:'#app',
     data:{
         catalogUrl : `/catalogData.json`,
         products:[],
-        // basketUrl:`/getBasket.json`,
         producInBasket:[],
         imgCatalog:'https://via.placeholder.com/200x150',
         basketCondition:'false',
@@ -45,9 +43,6 @@ const app = new Vue({
                 productElement.count--
             )
         },
-        saerch(){
-
-        }
     },
     computed:{
         basketBasketLength(){
@@ -58,7 +53,7 @@ const app = new Vue({
             }
         },
         filteredProducts(){
-            return filtered = this.products.filter((product) =>{
+            return this.products.filter((product) =>{
                 return product.product_name.indexOf(this.search) >-1
                 })
         }
