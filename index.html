@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="logo">Интернет магмзин</div>
+            <div class="cart">
+                <form action="#" class="search-form">
+                    <input 
+                        type="text" 
+                        class="search-field" 
+                        v-model="search"
+                    >
+                    <button class="btn-search" type="submit" > поиск</button>
+                </form>
+            </div>
+            <button type="button" 
+            @click="basketCondition = !basketCondition ">Корзина</button>
+            <div class="basket"  :class="{hiddenBlock : basketCondition }">
+                <div class="basket-emply" :class="{hiddenBlock : basketBasketLength }">корзина пуста</div>
+                <div class="basket-list" >
+                    <div class="basket-item" v-for="item of producInBasket" :key="item.id_product">
+                        <div class="item-product">
+                            <span>{{item.product_name}}</span>
+                        </div>
+                        <div class="item-price">
+                            <span>{{item.price}}</span>
+                        </div>
+                        <div class="item-col">
+                            <span>{{item.count}}</span>
+                        </div>
+                        <div class="item-total-price">
+                            <span>{{item.count * item.price}}</span>
+                        </div>
+                        <button type="button" @click="removeProduct(item)">удалить</button>
+
+                    </div>
+                <div class="basket-total">
+                    <div class="basket-total-price">
+                        <span></span>
+                    </div>
+                    <div class="basket-total-col">
+                        <span></span>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="products">
+                <div 
+                    class="product-item" 
+                    v-for="product of filteredProducts" 
+                    :key="product.id_product"
+                >
+                    <img :src="imgCatalog" alt="">
+                    <div class="desc">
+                        <h3 class="product_name">{{product.product_name}}</h3>
+                        <p class="product_price">{{product.price}} Р</p>
+                        <button class="buy-btn" @click="addProduct(product)" type="button">купить</button>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="public/script.js"></script>  
+</body>
+</html>
